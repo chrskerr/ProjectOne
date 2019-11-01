@@ -10,6 +10,21 @@
   </head>
 
   <body>
-    <%= yield %>
+
+    <nav>
+      <a href='/'>Home</a>
+      <% if @current_user.nil? %>
+        <%= link_to 'Create an Account', new_user_path %>
+        <%= link_to 'Log in', login_path %>
+      <% else %>
+        <p>Hello, <%= @current_user.name %></p>
+        <%= link_to 'Log out', root_path, :method => 'delete' %>
+      <% end %>
+    </nav>
+
+    <div id='main-box'>
+      <%= yield %>
+    </div>
+
   </body>
 </html>

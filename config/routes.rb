@@ -1,3 +1,15 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  get 'uploads/index'
+  get 'uploads/new'
+  get 'uploads/create'
+  get 'uploads/destroy'
+  root :to => 'core#home'
+  
+  resources :users, :only => [:new, :create]
+
+  resources :uploads, only: [:index, :new, :create, :destroy]
+
+  get '/login' => 'session#new'
+  post '/login' => 'session#create'
+  delete '/' => 'session#destroy'
 end
