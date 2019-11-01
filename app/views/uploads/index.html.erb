@@ -6,6 +6,23 @@
 
 <br />
 
+
+
+<ul>
+<% @folders.each do | folder | %>
+   <li><%= folder.name %>
+      <ul>
+         <% folder.uploads.each do | file | %>
+            <%= file.name %>
+         <% end %>
+      </ul>
+   </li>
+<% end %>
+</ul>
+
+
+
+
 <%= link_to "Upload new file", new_upload_path, class: "btn btn-primary" %>
 <br />
 <br />

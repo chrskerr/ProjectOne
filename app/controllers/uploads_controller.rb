@@ -1,6 +1,10 @@
 class UploadsController < ApplicationController
+  before_action :check_for_login
+  
   def index
-    @uploads = Upload.all
+      @uploads = Upload.all
+      @user = User.find_by :id => @current_user
+      @folders = @user.folders.all 
   end
 
   def new
@@ -12,7 +16,7 @@ class UploadsController < ApplicationController
     if @upload.save
       redirect_to root_path
     else
-      render new_upoad_path
+      render new_upload_path
     end
   end
 
