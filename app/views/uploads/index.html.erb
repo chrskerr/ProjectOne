@@ -24,7 +24,7 @@
          <% folder.uploads.each do | f | %>
          <% path = f.attachment.file.file %>
          <tr class='row'>
-            <td class='col-4'></td>
+            <td class='col-4'><%= image_tag 'arrow2.png', class: 'col-5' %></td>
             <td class='col-6'><%= link_to f.name, path.slice((path.index('public/') + 'public/'.length - 1)..path.length) %></td>
             <td class='col-2'><%= link_to "File Actions", edit_upload_path(f)%></td>
          </tr>  
