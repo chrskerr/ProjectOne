@@ -26,10 +26,25 @@ class UploadsController < ApplicationController
     end
   end
 
+  def edit
+    @file = Upload.find params[:id]
+    @folder_array = []
+    @current_user.folders.each do | f |
+      @folder_array << [f.name, f.id.to_i]
+    end
+  end
+
+  def update
+    file = Upload.find params[:id]
+    file.folder_id = params[:folder_id]
+    file.update upload_params 
+    redirect_to uploads_path
+  end
+
   def destroy
     @upload = Upload.find params[:id]
     @upload.destroy
-    redirect_to root_path
+    redirect_to uploads_path
   end
 
   private

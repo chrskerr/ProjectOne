@@ -11,20 +11,24 @@
 
   <body>
 
-    <nav>
-      <a href='/'>Home</a>
-      <% if @current_user.nil? %>
-        <%= link_to 'Create an Account', new_user_path %>
-        <%= link_to 'Log in', login_path %>
-      <% else %>
-        <p>Hello, <%= @current_user.name %></p>
-        <%= link_to 'Log out', root_path, :method => 'delete' %>
+    <div class='container'>
+      <nav class='navbar navbar-expand-lg navbar-light bg-light'>
+        <a class='nav-item col-2' href='/'>Home</a>
+        <% if @current_user.nil? %>
+          <%= link_to 'Log in', login_path, :class => 'nav-item col-2' %>
+          <%= link_to 'New Account', new_user_path, :class => 'nav-item col-2' %>
+        <% else %>
+          <%= link_to 'Log out', root_path, :method => 'delete', :class => 'nav-item col-2' %>
+        <% end %>
+      </nav>
+      <% if @current_user.present? %>
+        <h4 class='nav-item'>Hello, <%= @current_user.name %></h4>
       <% end %>
-    </nav>
 
-    <div id='main-box'>
-      <%= yield %>
+      <div id='main-box'>
+        <%= yield %>
+      </div>
+
     </div>
-
   </body>
 </html>

@@ -24,9 +24,7 @@ gem 'pry-rails'
 gem 'jquery-rails'
 
 gem 'carrierwave', '~> 2.0'
-gem 'send_file'
-# gem 'cloudinary'
-gem 'bootstrap-sass'
+gem 'bootstrap', '~> 4.3.1'
 
 
 # Reduces boot times through caching; required in config/boot.rb

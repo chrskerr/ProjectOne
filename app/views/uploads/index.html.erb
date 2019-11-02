@@ -1,27 +1,43 @@
-<% if !flash[:notice].blank? %>
-   <div class = "alert alert-info">
-      <%= flash[:notice] %>
+
+<h2>File Upload and Sharing</h2>
+
+<%= link_to "Upload new file", new_upload_path %>
+<%= link_to "Create a new folder", new_folder_path %>
+
+<br>
+<div class='container-fluid'>
+   <div class='row'>
+         <div class='col-4'><h5>Folders</h5></div>
+         <div class='col-8'><h5>Files</h5></div>
    </div>
-<% end %>
 
-<br />
+   <% @folders.each do | folder | %>
+      <div class='row'>
+         <div class='col-2'><%= folder.name %></div>
+         <div class='col-2'><%= link_to "Edit", edit_folder_path(folder)%></div>
+         <div class='col-7'>
+            <% if folder.uploads.present? %>
+               <% f = folder.uploads.first %>
+               <% path = f.attachment.file.file %>
+               <%= link_to f.name, path.slice((path.index('public/') + 'public/'.length - 1)..path.length) %>
+            
+         </div>
+         <div class='col-1'><%= link_to "Edit", edit_upload_path(f)%>
+            <% end %></div>
+      </div>
+         
+      <% if folder.uploads.count > 1 %>
+         <% folder.uploads.drop(1).each do | f | %>
+         <% path = f.attachment.file.file %>
+         <div class='row'>
+            <div class='col-2'></div>
+            <div class='col-2'></div>
+            <div class='col-7'><%= link_to f.name, path.slice((path.index('public/') + 'public/'.length - 1)..path.length) %></div>
+            <div class='col-1'><%= link_to "Edit", edit_upload_path(f)%></div>
+         </div>  
+         <% end %> 
+      <% end %>
+   <% end %>
+</div>
 
 
-
-<ul>
-<% @folders.each do | folder | %>
-   <li><%= folder.name %>
-      <ul>
-         <% folder.uploads.each do | file | %>
-            <% path = file.attachment.file.file %>
-            <%= link_to file.name, path.slice((path.index('public/') + 'public/'.length - 1)..path.length) %>
-         <% end %>
-      </ul>
-   </li>
-<% end %>
-</ul>
-
-
-
-
-<%= link_to "Upload new file", new_upload_path, class: "btn btn-primary" %>

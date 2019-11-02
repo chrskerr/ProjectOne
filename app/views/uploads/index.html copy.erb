@@ -1,0 +1,45 @@
+
+<h2>File Upload and Sharing</h2>
+
+<%= link_to "Upload new file", new_upload_path, class: "btn btn-primary" %>
+
+
+<table class='table'>
+   <thead>
+      <tr>
+         <th scope='col'>Folders</th>
+         <th scope='col'>Files</th>
+         <th scope='col'></th>
+      </tr>
+   </thead>
+
+   <tbody>
+      <% @folders.each do | folder | %>
+         <tr>
+            <td class='col-3'><%= folder.name %></td>
+            <td class='col-8'>
+               <% if folder.uploads.present? %>
+                  <% f = folder.uploads.first %>
+                  <% path = f.attachment.file.file %>
+                  <%= link_to f.name, path.slice((path.index('public/') + 'public/'.length - 1)..path.length) %>
+               <% end %>
+            </td>
+            </td>
+            <td class='col-1'>Button</td>
+         </tr>
+         
+         <% if folder.uploads.count > 1 %>
+            <% folder.uploads.drop(1).each do | file | %>
+            <% path = file.attachment.file.file %>
+            <tr>
+               <td class='col-3'></td>
+               <td class='col-8'><%= link_to file.name, path.slice((path.index('public/') + 'public/'.length - 1)..path.length) %></td>
+               <td class='col-1'>Button</td>
+            </tr>  
+            <% end %> 
+         <% end %>
+      <% end %>
+   </tbody>
+</table>
+
+

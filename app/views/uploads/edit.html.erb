@@ -1,0 +1,11 @@
+<h4>Edit this file</h4>
+
+<%= form_for @file do | f | %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    <%= f.label :folder_id %>
+    <%= select_tag(:folder_id, options_for_select(@folder_array)) %>     
+    <%= f.submit %>
+<% end %> 
+
+<%= link_to 'Delete', upload_path, method: 'delete', :data => { :confirm => 'Are you sure?' }  %>
