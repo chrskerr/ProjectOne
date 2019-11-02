@@ -175,6 +175,7 @@ GEM
       tilt (>= 1.1, < 3)
     sassc (2.2.1)
       ffi (~> 1.9)
+    send_file (1.0.1)
     spring (2.1.0)
     spring-watcher-listen (2.0.1)
       listen (>= 2.7, < 4.0)
@@ -225,6 +226,7 @@ DEPENDENCIES
   puma (~> 3.11)
   rails (~> 6.0.0)
   sass-rails (~> 5)
+  send_file
   spring
   spring-watcher-listen (~> 2.0.0)
   turbolinks (~> 5)
