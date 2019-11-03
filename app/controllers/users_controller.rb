@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     @user = User.new user_params
     if @user.save
       folder = Folder.create :name => 'All'
-      folder.users << @user
+      @user.folders << folder
       session[:user_id] = @user.id
       redirect_to root_path
     else  

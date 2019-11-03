@@ -17,7 +17,8 @@
       <%= f.label :attachment %>
       <%= f.file_field :attachment %>
       <%= f.label :folder_id %>
-      <%= select_tag(:folder_id, options_for_select(@folder_array)) %>      
+      <%= f.select :folder_id, @current_user.folders.pluck(:name, :id) %>     
+
       <%= f.submit "Save", class: "btn btn-primary" %>
    <% end %>
 </div>

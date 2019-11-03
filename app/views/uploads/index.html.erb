@@ -13,14 +13,23 @@
          <th class='col-2'></th>
       </tr>
    </thead>
-   <% @folders.each do | folder | %>
+   <% @current_user.folders.each do | folder | %>
       <tr class='row'>
          <td class='col-4'><%= folder.name %></td>
          <td class='col-6'></td>
-         <td class='col-2'><%= link_to "Folder Actions", edit_folder_path(folder)%></td>
+         <td class='col-2'><div class="dropdown">
+            <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+               Actions
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+               <%= link_to "Folder Actions", edit_folder_path(folder), class:'dropdown-item'%>
+              <a class="dropdown-item" href="#">Another action</a>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </div></td>
       </tr>
          
-      <% if folder.uploads.count > 0 %>
+      <% if folder.uploads.exists? %>
          <% folder.uploads.each do | f | %>
          <% path = f.attachment.file.file %>
          <tr class='row'>
