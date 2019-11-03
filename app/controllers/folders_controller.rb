@@ -29,6 +29,22 @@ class FoldersController < ApplicationController
     redirect_to uploads_path
   end
 
+  def sharing_edit
+    @folder = Folder.find params[:id]
+  end
+
+  def sharing_update
+    folder = Folder.find params[:id]
+    User.all.each do | user |
+      if params["#{user.email}"]
+        folder.users << user unless folder.users.pluck(:email).member?(user.email) 
+      else
+        folder.users.destroy(user.id) if folder.users.pluck(:email).member?(user.email) 
+      end 
+    end
+    redirect_to uploads_path
+  end
+
   private
   def folder_params
     params.require(:folder).permit(:name)

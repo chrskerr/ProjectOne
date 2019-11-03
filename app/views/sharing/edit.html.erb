@@ -1,8 +1,0 @@
-<%= form_for @folder do | f | %>
-    <% User.all.pluck(:email).each do | email | %>
-        <%= f.label email %>
-        <%= f.check_box email, email %>
-    <% end %>
-
-    <%= f.submit 'Update permissions' %>
-<% end %>

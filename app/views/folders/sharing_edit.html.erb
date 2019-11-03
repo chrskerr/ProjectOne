@@ -1,0 +1,10 @@
+<%= form_tag @folder do %>
+
+    <% User.all.each do | user | %>
+        <%= label_tag "#{user.name}" %>
+        <%= check_box_tag "#{user.email}", true, false %>
+    <% end %>
+
+    <%= submit_tag 'Update permissions' %>
+<% end %>
+
