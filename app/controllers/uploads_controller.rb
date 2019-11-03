@@ -3,6 +3,8 @@ class UploadsController < ApplicationController
   
   def index
     @uploads = Upload.all
+    @upload = Upload.new
+    @folder2 = Folder.new
   end
 
   def new
