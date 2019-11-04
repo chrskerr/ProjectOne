@@ -15,8 +15,7 @@
   </head>
 
   <body>
-
-    <div class='container'>
+    <div class='container vh-100 d-flex flex-column'>
       <nav class='navbar navbar-expand-lg navbar-light bg-light d-flex justify-content-between'>
         <div>
           <%= link_to 'Home', root_path, :class => 'nav-item mr-3' %>
@@ -38,12 +37,10 @@
         <% end %>
       </nav>
 
-      <div id='main-box' class='m-3'>
+      <div class='container flex-grow-1 d-flex'>
         <%= yield %>
       </div>
 
     </div>
-
-
   </body>
 </html>

@@ -1,29 +1,36 @@
-<h4>Contact list</h4>
+<div class='container flex-grow-1 d-flex flex-column'>
+    <h4>Contact list</h4>
 
-<div class='row h-100 border border-success'>
-    <div class='container col-2 btn-group-vertical'>
-        <% User.all.each do | u | %>
-            <% unless u.id == @current_user.id %>
-                <% if u.id == params[:id].to_i %>
-                <%= link_to "#{u.name}", chat_path(u), :class => "mb-2 btn btn-secondary" %>
-                <% else %>
-                <%= link_to "#{u.name}", chat_path(u), :class => "mb-2 btn btn-outline-secondary" %>
+    <div class='row flex-grow-1 d-flex flex-row '>
+        <div class='container col-2 d-flex flex-column'>
+            <% User.all.each do | u | %>
+                <% unless u.id == @current_user.id %>
+                    <% if u.id == params[:id].to_i %>
+                    <%= link_to "#{u.name}", chat_path(u), :class => "mb-2 btn btn-secondary" %>
+                    <% else %>
+                    <%= link_to "#{u.name}", chat_path(u), :class => "mb-2 btn btn-outline-secondary" %>
+                    <% end %>
                 <% end %>
             <% end %>
-        <% end %>
-    </div>
-
-
-    <div class='container h-100 col-10 border border-warning'> 
-
-        <div class='row h-75 border border-danger'>
-            <p>Top row</p>
         </div>
 
+        <div class='container col-10 flex-grow-1 d-flex flex-column' > 
 
-        <div class='row h-25 border border-danger'>
-            <p>Bottom row, want this to be the typing area</p>
+            <div class='row flex-grow-1'>
+                <p>Top row</p>
+            </div>
+
+
+            <div class='row border border-dark'>
+                <p>Bottom row, want this to be the typing area</p>
+            </div>
+            <div class='row d-flex flex-row justify-content-end'>
+                <button class='btn btn-primary'>Send</button>
+            </div>
+
         </div>
-
+        <div class='container bg-danger'>
+            <!-- MAKE THIS DIV GIVE A LITTLE SPACE AT THE BOTTOM -->
+        </div>
     </div>
 </div>
