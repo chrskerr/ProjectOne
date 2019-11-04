@@ -12,34 +12,15 @@ My idea so far:
     - Folders table? Allows files to be added to folders
     - Actions to upload a file, display it as a downloadable link. Delete the file. Share the file. etc.
     - Allows progress into folders, complex permission structures, etc, as time permits
+- Inter-user messaging system (in-progress)
+    - Web Sockets or Action Cable for live updating and interactive chat
 
-Other notes:
-- Trees folder contains heaps of basic art, in case I was building a basic tree-growing page. Probably unneeded now. 
-- Third table can always be the join table, don't stress about it per the above. One for users, one for the content, one for join, and then any extra s needed.
 - [Table Design](https://docs.google.com/presentation/d/1ODImeVmxoO8LnUwSr4AdAa0sZUfOBDUoQR8W5_o0DjY/edit?usp=sharing)
 
-Controller structure
-- Core will have front page for whole site, and front-page of each individual function of site. Can be seen without logging in. 
-- Same with session and users
-- All other controllers must be logged in.
-- Admin page:
-    - at top of controller "before_action :check_for_admin"
-    - or in users controller:
-        - "before_action :check_for_admin, :only => [:admin_page]"
 
 Other ideas:
 - Multi-user text editor
-    - One table for users, one table for active documents and authorised editors, third table for something else? Might be needed to perform the many-to-many database linkages for first two. 
-    - Simple interface to create accounts, open documents, type, save, etc
-    - Simultaneous edits good follow-on, once locking & non-simultaneous is done 
-- Gardening game
-    - One table for users, another to collect their garden elements (what, where, age, last "tended", etc), and another to link them to friends, so read-only or read-write their gardens? 
-    - Cleaner visuals, functionality, etc, good follow-ons
 - Reminders app
-    - Shared reminders. One table for user accounts, one for reminders, and one for sharing.
-    - Could add shared notes, or calendars, or similar to take further?
-- FTP server
-    - User accounts, file tracking, sharing permissions
 
 # [Brief](https://gist.github.com/wofockham/42880541c94121516109)
 

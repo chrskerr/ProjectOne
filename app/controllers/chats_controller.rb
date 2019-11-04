@@ -2,7 +2,6 @@ class ChatsController < ApplicationController
   before_action :check_for_login
 
   def index
-    # raise 'hell'
   end
 
   def show
