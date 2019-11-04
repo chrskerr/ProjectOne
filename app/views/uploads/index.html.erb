@@ -1,93 +1,94 @@
+<div class='container'>
+   <h2>File Upload and Sharing</h2>
 
-<h2>File Upload and Sharing</h2>
-
-<% if !@upload.errors.empty? %>
-   <div class = "alert alert-error">
-      
-      <ul>
-         <% @upload.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
-         <% end %>
-      </ul>
-      
-   </div>
-<% end %>
-
-
-
-<table class='table table-striped'>
-   <thead>
-      <tr class='row'>
-         <th class='col-12'>Files & Folders</th>
-      </tr>
-   </thead>
-   <% @current_user.folders.each do | folder | %>
-      <tr class='row'>
-         <td class='col-2'><%= folder.name %></td>
-         <td class='col-8'></td>
-         <td class='col-2'><div class="btn-group dropleft">
-            <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-               Actions
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-               <div class='px-4 py-3'>
-                  <% @folder = folder %>
-                  <%= render :partial => 'folders/folder_edit' %>
-               </div>
-               <div class="dropdown-divider"></div>
-               <div class='px-4 py-3'>
-                  <% @folder = folder %>
-                  <%= render :partial => 'folders/folder_share' %>
-               </div>
-               <div class="dropdown-divider"></div>
-               <%= link_to 'Delete', folder_path(folder), method: 'delete', :data => { :confirm => 'Are you sure? This will also delete all contained files.' }, class:'dropdown-item' %>
-            </div>
-          </div></td>
-      </tr>
+   <% if !@upload.errors.empty? %>
+      <div class = "alert alert-error">
          
-      <% if folder.uploads.exists? %>
-         <% folder.uploads.each do | f | %>
-         <% path = f.attachment.file.file %>
+         <ul>
+            <% @upload.errors.full_messages.each do |msg| %>
+               <li><%= msg %></li>
+            <% end %>
+         </ul>
+         
+      </div>
+   <% end %>
+
+
+
+   <table class='table table-striped'>
+      <thead>
          <tr class='row'>
-            <td class='col-2'><%= image_tag 'arrow2.png', class: 'col-10' %></td>
-            <td class='col-8'><%= link_to f.name, path.slice((path.index('public/') + 'public/'.length - 1)..path.length) %></td>
+            <th class='col-12'>Files & Folders</th>
+         </tr>
+      </thead>
+      <% @current_user.folders.each do | folder | %>
+         <tr class='row'>
+            <td class='col-2'><%= folder.name %></td>
+            <td class='col-8'></td>
             <td class='col-2'><div class="btn-group dropleft">
                <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Actions
                </button>
                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                   <div class='px-4 py-3'>
-                     <% @file = f %>
-                     <%= render :partial => 'file_edit' %>
+                     <% @folder = folder %>
+                     <%= render :partial => 'folders/folder_edit' %>
                   </div>
                   <div class="dropdown-divider"></div>
-                  <%= link_to 'Delete', upload_path(f), method: 'delete', :data => { :confirm => 'Are you sure?' }, class:'dropdown-item' %>
+                  <div class='px-4 py-3'>
+                     <% @folder = folder %>
+                     <%= render :partial => 'folders/folder_share' %>
+                  </div>
+                  <div class="dropdown-divider"></div>
+                  <%= link_to 'Delete', folder_path(folder), method: 'delete', :data => { :confirm => 'Are you sure? This will also delete all contained files.' }, class:'dropdown-item' %>
                </div>
-             </div></td>
-         </tr>  
-         <% end %> 
+            </div></td>
+         </tr>
+            
+         <% if folder.uploads.exists? %>
+            <% folder.uploads.each do | f | %>
+            <% path = f.attachment.file.file %>
+            <tr class='row'>
+               <td class='col-2'><%= image_tag 'arrow2.png', class: 'col-10' %></td>
+               <td class='col-8'><%= link_to f.name, path.slice((path.index('public/') + 'public/'.length - 1)..path.length) %></td>
+               <td class='col-2'><div class="btn-group dropleft">
+                  <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                     Actions
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                     <div class='px-4 py-3'>
+                        <% @file = f %>
+                        <%= render :partial => 'file_edit' %>
+                     </div>
+                     <div class="dropdown-divider"></div>
+                     <%= link_to 'Delete', upload_path(f), method: 'delete', :data => { :confirm => 'Are you sure?' }, class:'dropdown-item' %>
+                  </div>
+               </div></td>
+            </tr>  
+            <% end %> 
+         <% end %>
       <% end %>
-   <% end %>
-</table>
+   </table>
 
-<div class="btn-group dropup">
-   <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-     Upload New File
-   </button>
-   <div class="dropdown-menu">
-      <div class='px-4 py-3'>
-         <%= render :partial => 'file_new' %>
+   <div class="btn-group dropup">
+      <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Upload New File
+      </button>
+      <div class="dropdown-menu">
+         <div class='px-4 py-3'>
+            <%= render :partial => 'file_new' %>
+         </div>
       </div>
    </div>
- </div>
- 
- <div class="btn-group dropup">
-   <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-     Create New Folder
-   </button>
-   <div class="dropdown-menu">
-      <div class='px-4 py-3'>
-         <%= render :partial => 'folders/folder_new' %>
+   
+   <div class="btn-group dropup">
+      <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Create New Folder
+      </button>
+      <div class="dropdown-menu">
+         <div class='px-4 py-3'>
+            <%= render :partial => 'folders/folder_new' %>
+         </div>
       </div>
    </div>
- </div>
+</div>
