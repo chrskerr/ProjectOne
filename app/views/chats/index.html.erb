@@ -1,0 +1,9 @@
+<h4>Select a chat:</h4>
+
+<div class=''>
+    <% User.all.each do | u | %>
+        <% unless u.id == @current_user.id %>
+            <%= link_to "#{u.name}", chat_path(u), :class => "btn btn-outline-primary" %>
+        <% end %>
+    <% end %>
+</div>

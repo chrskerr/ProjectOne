@@ -1,4 +1,4 @@
-<%= form_for @upload, html: { multipart: true } do |f| %>
+<%= form_for @upload, html: { multipart: true, :class => 'form-group' } do |f| %>
       <%= f.label :name %>
       <%= f.text_field :name %>
       <%= f.label :attachment %>
@@ -6,5 +6,5 @@
       <%= f.label :folder_id %>
       <%= f.select :folder_id, @current_user.folders.pluck(:name, :id) %>     
 
-      <%= f.submit "Save", class: "btn btn-primary" %>
+      <%= f.submit "Upload", :class => "btn btn-secondary" %>
    <% end %>

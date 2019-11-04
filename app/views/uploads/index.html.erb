@@ -34,7 +34,11 @@
                   <% @folder = folder %>
                   <%= render :partial => 'folders/folder_edit' %>
                </div>
-               <%= link_to 'Sharing', edit_sharing_path(folder), class:'dropdown-item' %>
+               <div class="dropdown-divider"></div>
+               <div class='px-4 py-3'>
+                  <% @folder = folder %>
+                  <%= render :partial => 'folders/folder_share' %>
+               </div>
                <div class="dropdown-divider"></div>
                <%= link_to 'Delete', folder_path(folder), method: 'delete', :data => { :confirm => 'Are you sure? This will also delete all contained files.' }, class:'dropdown-item' %>
             </div>

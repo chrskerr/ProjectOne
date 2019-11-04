@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :users, :only => [:new, :create]
   resources :uploads
   resources :folders 
+  resources :chats, :only => [:index, :show, :new]
   get '/login' => 'session#new'
   post '/login' => 'session#create'
   delete '/' => 'session#destroy'

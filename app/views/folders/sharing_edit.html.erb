@@ -2,7 +2,12 @@
 
     <% User.all.each do | user | %>
         <%= label_tag "#{user.name}" %>
-        <%= check_box_tag "#{user.email}", true, false %>
+        
+        <% if @folder.users.pluck(:email).member?(user.email) %>
+            <%= check_box_tag "#{user.email}", true, false, {:checked => "checked"} %>
+        <% else %>
+            <%= check_box_tag "#{user.email}", true, false %>
+        <% end %>
     <% end %>
 
     <%= submit_tag 'Update permissions' %>

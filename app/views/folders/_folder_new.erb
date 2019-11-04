@@ -1,7 +1,7 @@
-<%= form_for @folder2 do | f | %>
+<%= form_for @folder2, :html => {:class => 'form-group'} do | f | %>
     <%= f.label :name %>
     <%= f.text_field :name %>
 
-    <%= f.submit %>
+    <%= f.submit 'Add Folder', :class => "btn btn-secondary" %>
 <% end %> 
 

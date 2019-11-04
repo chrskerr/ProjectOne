@@ -1,0 +1,15 @@
+<%= form_tag @folder, :html => {:class => 'form-group'} do %>
+
+    <% User.all.each do | user | %>
+        <%= label_tag "#{user.name}" %>
+        
+        <% if @folder.users.pluck(:email).member?(user.email) %>
+            <%= check_box_tag "#{user.email}", true, false, {:checked => "checked"} %>
+        <% else %>
+            <%= check_box_tag "#{user.email}", true, false %>
+        <% end %>
+    <% end %>
+
+    <%= submit_tag 'Update sharing', :class => "btn btn-secondary" %>
+<% end %>
+
