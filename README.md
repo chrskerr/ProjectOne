@@ -2,7 +2,7 @@
 
 ## Week 6 project for SEI 34, General Assembly Sydney
 
-### [Live Site]() - coming soon...
+### [Live Site on Heroku](https://chrskerr-projectone.herokuapp.com)
 
 My idea so far:
 - Dropbox Clone (primary idea)
