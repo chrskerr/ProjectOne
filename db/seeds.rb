@@ -13,6 +13,33 @@ f3 = Folder.create :name => 'Running'
 f4 = Folder.create :name => 'Snorkelling'
 puts "#{ Folder.count } folders created"
 
+Upload.destroy_all
+
+Chat.destroy_all
+Chat.create :from_user => u1.id, :to_user => u3.id, :seen => false, :message => 'Hello Kate'
+sleep 2
+Chat.create :from_user => u3.id, :to_user => u1.id, :seen => false, :message => 'Hello Chris'
+sleep 2
+Chat.create :from_user => u1.id, :to_user => u3.id, :seen => false, :message => 'How are you?'
+sleep 2
+Chat.create :from_user => u3.id, :to_user => u1.id, :seen => false, :message => "I'm great! How about you?"
+sleep 2
+Chat.create :from_user => u1.id, :to_user => u3.id, :seen => false, :message => 'Great to hear! I am also good'
+sleep 2
+Chat.create :from_user => u3.id, :to_user => u1.id, :seen => false, :message => 'Whats for lunch today?'
+sleep 2
+Chat.create :from_user => u3.id, :to_user => u1.id, :seen => false, :message => "I'm eating salad"
+sleep 2
+Chat.create :from_user => u1.id, :to_user => u3.id, :seen => false, :message => 'Salad too :)'
+sleep 2
+Chat.create :from_user => u1.id, :to_user => u3.id, :seen => false, :message => 'Gotta get back to class!'
+sleep 2
+Chat.create :from_user => u3.id, :to_user => u1.id, :seen => false, :message => 'Bye!'
+sleep 2
+puts "#{ Chat.count } messages created"
+
+
+
 puts "Folder and User associations"
 f1.users << u1
 f2.users << u2

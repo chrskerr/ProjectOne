@@ -17,7 +17,32 @@
         <div class='container col-10 flex-grow-1 d-flex flex-column' > 
 
             <div class='row flex-grow-1'>
-                <p>Top row</p>
+                <% @messages.each do | msg | %>
+                    <% if msg.from_user == @current_user.id %>
+                        <div class='col-12 d-flex flex-row justify-content-end'>
+                            <span class='col-3 border bg-primary text-white p-1 rounded'>
+                                <p><%= msg.message %></p>
+                            </span>
+                        </div>
+                        <div class='col-12 d-flex flex-row justify-content-end'>
+                            <span class='col-3'>
+                                <p class='text-secondary small'><%= msg.created_at.strftime('%a %e %b %y, %I:%M %P %z') %></p>
+                            </span>
+                        </div>
+
+                    <% else %>
+                    <div class='col-12 d-flex flex-row justify-content-start'>
+                            <span class='col-3 border bg-secondary text-white p-1 rounded'>
+                                <p><%= msg.message %></p>
+                            </span>
+                        </div>
+                        <div class='col-12 d-flex flex-row justify-content-start'>
+                            <span class='col-3'>
+                                <p class='text-secondary small'><%= msg.created_at.strftime('%a %e %b %y, %I:%M %P %z') %></p>
+                            </span>
+                        </div>
+                    <% end %>
+                <% end %>
             </div>
 
 
