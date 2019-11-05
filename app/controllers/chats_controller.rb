@@ -18,6 +18,7 @@ class ChatsController < ApplicationController
     message = Chat.create chat_params
     message.from_user = @current_user.id
     message.save
+
     redirect_to chat_path(params[:chat]['to_user'])
   end
 
