@@ -1,0 +1,7 @@
+<%= form_for @message, :html => {:class => 'd-flex flex-row w-100 m-2'} do | f | %>
+
+    <%= f.text_field :message, :placeholder => 'Type your message here', :class => 'flex-grow-1 input-control m-1' %>
+    <%= f.hidden_field :to_user, :value => params[:id] %>
+    <%= f.submit 'Send', :class => 'btn btn-primary' %>
+
+<% end %>

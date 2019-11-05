@@ -21,7 +21,7 @@
             <th class='col-12'>Files & Folders</th>
          </tr>
       </thead>
-      <% @current_user.folders.each do | folder | %>
+      <% @current_user.folders.sort.each do | folder | %>
          <tr class='row'>
             <td class='col-2'><%= folder.name %></td>
             <td class='col-8'></td>
@@ -46,7 +46,7 @@
          </tr>
             
          <% if folder.uploads.exists? %>
-            <% folder.uploads.each do | f | %>
+            <% folder.uploads.order(:name).each do | f | %>
             <% path = f.attachment.file.file %>
             <tr class='row'>
                <td class='col-2'><%= image_tag 'arrow2.png', class: 'col-10' %></td>

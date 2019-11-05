@@ -2,7 +2,6 @@ class UploadsController < ApplicationController
   before_action :check_for_login
   
   def index
-    @uploads = Upload.all
     @upload = Upload.new
     @folder2 = Folder.new
   end

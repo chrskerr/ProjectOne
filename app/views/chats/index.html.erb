@@ -3,30 +3,18 @@
 
     <div class='row flex-grow-1 d-flex flex-row '>
         <div class='container col-2 d-flex flex-column'>
-            <% User.all.each do | u | %>
+            <% User.all.order(:name).each do | u | %>
                 <% unless u.id == @current_user.id %>
                     <%= link_to "#{u.name}", chat_path(u), :class => "mb-2 btn btn-outline-secondary" %>
                 <% end %>
             <% end %>
         </div>
 
-        <div class='container col-10 flex-grow-1 d-flex flex-column' > 
-
-            <div class='row flex-grow-1'>
-                <p>Top row</p>
-            </div>
+        <div class='container col-10 d-flex flex-column' > 
 
 
-            <div class='row border border-dark'>
-                <p>Bottom row, want this to be the typing area</p>
-            </div>
-            <div class='row d-flex flex-row justify-content-end'>
-                <button class='btn btn-primary'>Send</button>
-            </div>
 
         </div>
-        <div class='container bg-danger'>
-            <!-- MAKE THIS DIV GIVE A LITTLE SPACE AT THE BOTTOM -->
-        </div>
+
     </div>
 </div>
