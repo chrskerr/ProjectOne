@@ -4,7 +4,8 @@
     <title>ProjectOne</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-   
+    <%= action_cable_meta_tag %>
+
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -15,7 +16,7 @@
   </head>
 
   <body>
-    <div id='toast-box' aria-live="polite" aria-atomic="true" style="position: absolute; top: 0; right: 0">
+    <div id='toast-box' class='d-flex flex-column' aria-live="polite" aria-atomic="true" style="position: absolute; top: 0; right: 0; z-index: 100; width: 250px;">
     </div>
 
     <div class='container vh-100 d-flex flex-column'>
@@ -37,6 +38,7 @@
       <nav class='navbar navbar-expand-lg navbar-light bg-light'>
         <% if @current_user.present? %>
           <p class='nav-item'>Hello <%= @current_user.name %></p>
+          <p id='session-id' style='display: none;'><%= @current_user.id %></p>
         <% end %>
       </nav>
 

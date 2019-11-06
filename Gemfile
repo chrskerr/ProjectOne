@@ -21,6 +21,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'bcrypt', '~> 3.1.7'
 
 gem 'redis'
+gem 'actioncable'
 gem 'pry-rails'
 gem 'jquery-rails'
 
