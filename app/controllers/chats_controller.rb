@@ -21,7 +21,7 @@ class ChatsController < ApplicationController
     if message.save
       ActionCable.server.broadcast 'chat', {message: message.message, sender: @current_user, recipient: message.to_user, time: message.created_at.strftime('%a %e %b %y, %I:%M %P')}
     end
-
+    flash[:notice] = true
     redirect_to chat_path(params[:chat]['to_user'])
   end
 

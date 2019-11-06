@@ -17,7 +17,12 @@
         <div class='container col-10 flex-grow-1 d-flex flex-column'> 
 
             <div id="message-window" class='container' style="overflow: scroll; height: calc(100vh - 250px);" >
-                <script>scroll()</script>
+                <% if flash[:notice] %>
+                    <script>setTimeout(function() {scrollFast()}, 50)</script>
+                <% else %>
+                    <script>setTimeout(function() {scrollSlow()}, 5)</script>
+                <% end %>
+
                 <% @messages.each do | msg | %>
                     <% if msg.from_user == @current_user.id %>
                         <div class='col-12 d-flex flex-row justify-content-end'>
