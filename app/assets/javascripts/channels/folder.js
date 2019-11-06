@@ -16,12 +16,14 @@ App.folder = App.cable.subscriptions.create('FolderChannel', {
         location.reload(true)
         } else {
 
+        let key = Math.floor(Math.random()*100000)
+
         let  node = $(`
-            <div class="toast flex-grow-1 m-2" role="alert" aria-live="assertive" aria-atomic="true" style='opacity: 100;'>
+            <div id='notification-${key}' class="toast flex-grow-1 m-2" role="alert" aria-live="assertive" aria-atomic="true" style='opacity: 100;'>
             <div class="toast-header">
                 <strong class="mr-auto">Folders Update</strong>
                 <small class="text-muted">just now</small>
-                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                <button id='close-${key}' type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -31,6 +33,11 @@ App.folder = App.cable.subscriptions.create('FolderChannel', {
             </div>`);
 
         $("#toast-box").append(node);
+
+        $(`#close-${key}`).click( function() {
+            $(`#notification-${key}`).fadeOut(350)
+        })
+
         }
     }
 }

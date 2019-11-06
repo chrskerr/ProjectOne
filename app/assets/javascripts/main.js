@@ -12,3 +12,4 @@ function scrollFast() {
     let objDiv = document.getElementById("message-window");
     objDiv.scrollTop = objDiv.scrollHeight;
 }
+
