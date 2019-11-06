@@ -6,7 +6,7 @@ this.App = {}
 
 App.cable = ActionCable.createConsumer()
 
-App.chat = App.cable.subscriptions.create('ChatChannel', {  
+App.chat = App.cable.subscriptions.create('ChatChannel', {
 	received: function(data) {
 
 		let current_user = $('#session-id').text();
@@ -17,7 +17,7 @@ App.chat = App.cable.subscriptions.create('ChatChannel', {
 			let node = $(`
 			<div class='col-12 d-flex flex-row justify-content-start'>
 				<span class='col-3 border bg-secondary text-white p-1 rounded'>
-					<p>${data.message.message}</p>
+					<p>${data.message}</p>
 				</span>
 			</div>
 			<div class='col-12 d-flex flex-row justify-content-start'>
@@ -28,29 +28,12 @@ App.chat = App.cable.subscriptions.create('ChatChannel', {
 			`)
 
 			$('#message-window').append(node);
-			scroll();
+			scrollSlow();
 
 			} else {
 
-			let node = $(`
-				<div id='notification-${data.message.id}' class="toast flex-grow-1 m-2" role="alert" aria-live="assertive" aria-atomic="true" style='opacity: 100;'>
-					<div class="toast-header">
-						<strong class="mr-auto">Message from ${data.sender.name}</strong>
-						<small class="text-muted">just now</small>
-						<button id="close-${data.message.id}" type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="toast-body">
-						<a href='/chats/${data.sender.id}'>${data.message.message}</a>
-					</div>
-				</div>`);
+			notificationBuilder(data.title, data.message, data.link, data.key)
 
-				$("#toast-box").append(node);
-
-				$(`#close-${data.message.id}`).click( function() {
-					$(`#notification-${data.message.id}`).fadeOut(350)
-				})
 			}
 		}     
 	}
