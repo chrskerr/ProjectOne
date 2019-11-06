@@ -1,6 +1,6 @@
 production:
   adapter: redis
-  url: <%= ENV.fetch('ACTION_CABLE_REDIS_URL', 'redis://127.0.0.1:6380/1') %>
+  url: redis://redistogo:8231da181b8df397732b12781a52abf0@porgy.redistogo.com:11700/
 
 development:
   adapter: async
