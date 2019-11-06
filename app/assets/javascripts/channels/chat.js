@@ -14,7 +14,7 @@ App.chat = App.cable.subscriptions.create('ChatChannel', {
 
     if (window.location.href.includes(`/chats/${data.sender.id}`)) {
 
-      node = $(`
+      let node = $(`
       <div class='col-12 d-flex flex-row justify-content-start'>
         <span class='col-3 border bg-secondary text-white p-1 rounded'>
             <p>${data.message}</p>
@@ -25,23 +25,22 @@ App.chat = App.cable.subscriptions.create('ChatChannel', {
               <p class='text-secondary small'>${data.time}</p>
           </span>
       </div>
-
       `)
+
       $('#message-window').append(node);
       scroll();
+
     } else if (current_user === String(data.recipient)) {
-      node = $(`
+
+      let node = $(`
       <a href='/chats/${data.sender.id}'>
-      <div id='notification' class="toast flex-grow-1 m-2" role="alert" aria-live="assertive" aria-atomic="true" style='opacity: 100;' data-autohide='true' data-delay="3000">
+      <div class="toast flex-grow-1 m-2" role="alert" aria-live="assertive" aria-atomic="true" style='opacity: 100;'>
         <div class="toast-header">
           <strong class="mr-auto">Message from ${data.sender.name}</strong>
           <small class="text-muted">just now</small>
-          <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
         </div>
         <div class="toast-body">
-          <p>${data.message}</p>
+          <p class='text-dark'>${data.message}</p>
         </div>
       </div>
       <a>`);
