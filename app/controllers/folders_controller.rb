@@ -16,6 +16,11 @@ class FoldersController < ApplicationController
   def update 
     folder = Folder.find params[:id]
     folder.update folder_params 
+
+    folder.users.each do | user |
+      ActionCable.server.broadcast 'folder', {message: "#{@current_user.name} has edited one of your folders", recipient: user.id}
+    end
+
     redirect_to uploads_path
   end
 
