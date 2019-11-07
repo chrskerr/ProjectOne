@@ -50,7 +50,7 @@
             <% path = f.attachment.file.file %>
             <tr class='row'>
                <td class='col-2'><%= image_tag 'arrow2.png', class: 'col-10' %></td>
-               <td class='col-8'><%= link_to f.name, path.slice((path.index('public/') + 'public/'.length - 1)..path.length) %></td>
+               <td class='col-8'><%= link_to f.name, path.slice((path.index('public/') + 'public/'.length - 1)..path.length), target: :_blank %></td>
                <td class='col-2'><div class="btn-group dropleft">
                   <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                      Actions
