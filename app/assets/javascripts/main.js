@@ -17,12 +17,6 @@ function scrollSlow() {
     console.log('hit')
 }
 
-function scrollFast() {
-    // scroll immediately to bottom of messages-div, only used for message-send
-    let objDiv = document.getElementById("message-window");
-    objDiv.scrollTop = objDiv.scrollHeight;
-}
-
 
 let notificationBuilder = function (title, message, link, key) {
 // unified toasts creation between all notifications
