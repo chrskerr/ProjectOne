@@ -17,8 +17,12 @@ class FoldersController < ApplicationController
     folder = Folder.find params[:id]
     folder.update folder_params 
 
+    # broadcast once for each user of the folder. messy design since it fires off one broadcast for each user of the folder, but sticking with this design decision since it matches the below sharing_update database update code and allows me to keep things far cleaner seperately
     folder.users.each do | user |
-      ActionCable.server.broadcast 'folder', {message: "#{@current_user.name} has edited one of your folders", recipient: user.id}
+      ActionCable.server.broadcast 'folder', {
+        message: "#{@current_user.name} has edited one of your folders", 
+        recipient: user.id
+      }
     end
 
     redirect_to uploads_path
@@ -40,6 +44,11 @@ class FoldersController < ApplicationController
 
   def sharing_update
     folder = Folder.find params[:id]
+    
+    # for every possible user, first test if they are in the params for the change
+    # then if they are "true" in params, and are not already a member of the folder, add them and then fire off a broadcast to alert them
+    # if they are 'false' in params, and are currently a member of the folder, then remove and fire off a broadcast
+    # all other outcomes are ignored since no changes are made 
     User.all.each do | user |
       if params["#{user.email}"]
         unless folder.users.pluck(:email).member?(user.email) 

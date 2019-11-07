@@ -17,12 +17,22 @@ class ChatsController < ApplicationController
   def create
     message = Chat.create chat_params
     message.from_user = @current_user.id
-    
-    if message.save
-      ActionCable.server.broadcast 'chat', {title: "Message from #{@current_user.name}", message: message.message, sender: @current_user, recipient: message.to_user, time: message.created_at.strftime('%a %e %b %y, %I:%M %P'), link: "/chats/#{params[:id]}", key: message.id}
-    end
-    flash[:notice] = true
-    redirect_to chat_path(params[:chat]['to_user'])
+    message.save
+
+    # broadcast a message to everyone that a new message has been received, and the info that the receiver function needs to determine what happens next.
+    ActionCable.server.broadcast 'chat', {
+      title: "Message from #{@current_user.name}", 
+      message: message.message, 
+      sender: @current_user, 
+      recipient: message.to_user, 
+      time: message.created_at.strftime('%a %e %b %y, %I:%M %P'), 
+      link: "/chats/#{@current_user.id}", 
+      key: message.id
+    }
+
+    # the form no longer refreshes the page, instead the below clears the value from the input field and then fires the JS function to insert new message
+    render :js => "$('#message-input').val('') && newChatDisplay('outgoing', '#{message.message}', '#{message.created_at.strftime('%a %e %b %y, %I:%M %P')}');"
+   
   end
 
   private

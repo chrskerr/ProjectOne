@@ -1,21 +1,33 @@
 <h1>Sign Up</h1>
 
-<% if @user.errors.any? %>
-    <ul> 
-        <% @user.errors.full_messages.each do | msg | %>
-        <li><%= msg %></li>
-        <% end %>
-    </ul>
- <% end %>
+<div class='container'>
+    <% if @user.errors.any? %>
+        <ul> 
+            <% @user.errors.full_messages.each do | msg | %>
+            <li><%= msg %></li>
+            <% end %>
+        </ul>
+    <% end %>
 
-<%= form_for @user do | f | %>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-    <%= f.label :email %>
-    <%= f.email_field :email %>
-    <%= f.label :password %>
-    <%= f.password_field :password %>
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation %>
-    <%= f.submit %>
-<% end %>
+    <%= form_for @user, :html => {:class => 'form-group d-flex flex-column align-items-start'} do | f | %>
+        <div class='md-1'>
+            <%= f.label :name %>
+            <%= f.text_field :name %>
+        </div> 
+        <div class='md-1'>
+            <%= f.label :email %>
+            <%= f.email_field :email %>
+        </div>
+        <div class='md-1'>
+            <%= f.label :password %>
+            <%= f.password_field :password %>
+        </div>
+        <div class='md-1'>
+            <%= f.label :password_confirmation %>
+            <%= f.password_field :password_confirmation %>
+        </div>
+        <div class='md-1'>
+            <%= f.submit 'Sign In', :class => "btn btn-secondary" %>
+        </div>
+    <% end %>
+</div>

@@ -1,11 +1,15 @@
 <%= form_for @upload, html: { multipart: true, :class => 'form-group d-flex flex-column' } do |f| %>
-      <%= f.label :name %>
-      <%= f.text_field :name %>
-      <%= f.label :attachment %>
-      <%= f.file_field :attachment %>
-      <div>
-      <%= f.label :folder_id %>
-      <%= f.select :folder_id, @current_user.folders.pluck(:name, :id) %>     
+      <div class='my-1'>
+            <%= f.label :name %>
+            <%= f.text_field :name %>
+      </div>
+      <div class='my-1'>
+            <%= f.label :attachment %>
+            <%= f.file_field :attachment %>
+      </div>
+      <div class='my-2'>
+            <%= f.label :folder_id %>
+            <%= f.select :folder_id, @current_user.folders.pluck(:name, :id) %>     
       </div>
       <%= f.submit "Upload", :class => "btn btn-secondary" %>
    <% end %>

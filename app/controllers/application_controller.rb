@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-    before_action :fetch_user #call this before any other action is called 
+    before_action :fetch_user 
 
     private 
     def fetch_user

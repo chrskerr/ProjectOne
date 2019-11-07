@@ -10,29 +10,18 @@ App.chat = App.cable.subscriptions.create('ChatChannel', {
 	received: function(data) {
 
 		let current_user = $('#session-id').text();
+		// hacky, but lets JS know who is currently logged in, easy to duplicate in browser but worked well for now
 
 		if (current_user === String(data.recipient)) {
 			if (window.location.href.includes(`/chats/${data.sender.id}`)) {
 
-			let node = $(`
-			<div class='col-12 d-flex flex-row justify-content-start'>
-				<span class='col-3 border bg-secondary text-white p-1 rounded'>
-					<p>${data.message}</p>
-				</span>
-			</div>
-			<div class='col-12 d-flex flex-row justify-content-start'>
-				<span class='col-3'>
-					<p class='text-secondary small'>${data.time}</p>
-				</span>
-			</div>
-			`)
-
-			$('#message-window').append(node);
-			scrollSlow();
+			newChatDisplay('incoming', data.message, data.time)
+			// defined in app/assets/javascripts/main.js
 
 			} else {
 
 			notificationBuilder(data.title, data.message, data.link, data.key)
+			// defined in app/assets/javascripts/main.js
 
 			}
 		}     

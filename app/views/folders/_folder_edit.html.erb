@@ -1,6 +1,7 @@
 <%= form_for @folder, :html => {:class => 'form-group'} do | f | %>
-    <%= f.text_field :name%>
     
-    <%= f.submit 'Rename Folder', :class => "btn btn-secondary" %>
+    <%= f.text_field :name, :class => 'my-1' %>
+    
+    <%= f.submit 'Rename Folder', :class => "btn btn-secondary my-1" %>
 <% end %> 
 

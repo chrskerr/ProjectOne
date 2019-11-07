@@ -46,7 +46,7 @@
          </tr>
             
          <% if folder.uploads.exists? %>
-            <% folder.uploads.order(:name).each do | f | %>
+            <% folder.uploads.sort_by{ | file | file.name.downcase }.each do | f | %>
             <% path = f.attachment.file.file %>
             <tr class='row'>
                <td class='col-2'><%= image_tag 'arrow2.png', class: 'col-10' %></td>
