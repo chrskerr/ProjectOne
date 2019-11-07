@@ -51,11 +51,7 @@
                 <% end %>
             </div>
 
-            <% if flash[:notice] %>
-                <script>scrollFast()</script>
-            <% else %>
-                <script>setTimeout(function() {scrollSlow()}, 5)</script>
-            <% end %>
+            <script>setTimeout(function() {scrollSlow()}, 250)</script>
 
             <div class='row w-100'>
                 
