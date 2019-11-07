@@ -13,6 +13,8 @@ function scrollSlow() {
     let objDiv = document.getElementById("message-window");
     let end = objDiv.scrollHeight;
     $('#message-window').animate({scrollTop: end}, 1000)
+
+    console.log('hit')
 }
 
 function scrollFast() {
