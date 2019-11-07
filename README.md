@@ -4,10 +4,11 @@
 
 ## Content:
 
-- [Live Site on Heroku](https://chrskerr-projectone.herokuapp.com)
 - [Summary](#Summary)
-- [Brief: external link](https://gist.github.com/wofockham/42880541c94121516109)
 - [Installation](#Installation)
+- [Live Site - hosted on Heroku](https://chrskerr-projectone.herokuapp.com)
+- [Brief - external](https://gist.github.com/wofockham/42880541c94121516109)
+
 
 ## Summary
 I have created a drop-box lite style file upload, storage, sharing and download site; which also includes live chat between users.
