@@ -81,6 +81,9 @@ $('.dropdown-toggle').click(function() {
 
 $(document).on('turbolinks:load', function() {
 
+    // added this because it appears turbolinks was triggering the scrollSlow() function twice on page load, causing weird load behaviour
+    // this causes the script to only be run once after the turbolinks (page optimisation) program has finished 
+    
     if (document.location.href.includes('/chats/')) { 
         scrollSlow();
     }
