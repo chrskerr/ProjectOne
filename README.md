@@ -1,7 +1,7 @@
 # ProjectOne
 
 ## Week 6 project for SEI 34, General Assembly Sydney
-## [Live Site - hosted on Heroku](https://chrskerr-projectone.herokuapp.com)
+### [Live Site - hosted on Heroku](https://chrskerr-projectone.herokuapp.com)
 
 
 ## Content:
