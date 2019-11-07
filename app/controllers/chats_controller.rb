@@ -31,7 +31,7 @@ class ChatsController < ApplicationController
     }
 
     # the form no longer refreshes the page, instead the below clears the value from the input field and then fires the JS function to insert new message
-    render :js => "$('#message-input').val('') && newChatDisplay('outgoing', '#{message.message}', '#{message.created_at.strftime('%a %e %b %y, %I:%M %P')}');"
+    render :js => "$('#message-input').val('') && newChatDisplay(`outgoing`, `#{message.message}`, `#{message.created_at.strftime('%a %e %b %y, %I:%M %P')}`);"
    
   end
 

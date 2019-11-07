@@ -18,6 +18,9 @@ Major challenges:
 - File and folder table structure to allow for sharing and storage simply 
 - Action Cable (Web Sockets) to allow for messaging to logged-in users if a particular event occurs. This allows me to show a new-message notification for example.
 
+Current bugs:
+- Messages multi-send sometimes on Heroku
+
 - [Table Design](https://docs.google.com/presentation/d/1ODImeVmxoO8LnUwSr4AdAa0sZUfOBDUoQR8W5_o0DjY/edit?usp=sharing)
 
 
