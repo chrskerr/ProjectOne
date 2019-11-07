@@ -1,20 +1,8 @@
-$('.dropdown-toggle').click(function() {
-    console.log('something')
-
-    this.dropdown('toggle')
-    // I think that this adds the JS to make the on Uploads page show/hide, but when clicked the above console.log is not showing, so maybe I'm wrong
-    // seperating this out so that I can attempt to add a scrollTop to make the pop-up always entirely visible
-    // commenting this out still has the buttons toggle.... this is final fine-tuning, leaving for now
-})
-
-
 function scrollSlow() {
     // scroll quickly to bottom of messages-div, used when receiving a message or changing chat window, etc
     let objDiv = document.getElementById("message-window");
     let end = objDiv.scrollHeight;
     $('#message-window').animate({scrollTop: end}, 1000)
-
-    console.log('hit')
 }
 
 
@@ -81,3 +69,19 @@ let newChatDisplay = function (direction, message, time, messageId) {
     $('#message-window').append(node);
     scrollSlow();
 }
+
+$('.dropdown-toggle').click(function() {
+    console.log('something')
+
+    this.dropdown('toggle')
+    // I think that this adds the JS to make the on Uploads page show/hide, but when clicked the above console.log is not showing, so maybe I'm wrong
+    // seperating this out so that I can attempt to add a scrollTop to make the pop-up always entirely visible
+    // commenting this out still has the buttons toggle.... this is final fine-tuning, leaving for now
+})
+
+$(document).on('turbolinks:load', function() {
+
+    if (document.location.href.includes('/chats/')) { 
+        scrollSlow();
+    }
+})

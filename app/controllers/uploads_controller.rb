@@ -15,7 +15,7 @@ class UploadsController < ApplicationController
     if @upload.save
       redirect_to uploads_path
     else
-      render new_upload_path
+      redirect_to uploads_path
     end
   end
 
