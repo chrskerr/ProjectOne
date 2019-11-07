@@ -26,6 +26,7 @@ I have created a drop-box lite style file upload, storage, sharing and download 
 
 ### Current bugs:
 - Messages multi-send sometimes on Heroku
+- Select field in Dropdown list on Uploads page (for file New and file Edit) doesn't work in Chrome
 
 - [Table Design](https://docs.google.com/presentation/d/1ODImeVmxoO8LnUwSr4AdAa0sZUfOBDUoQR8W5_o0DjY/edit?usp=sharing)
 

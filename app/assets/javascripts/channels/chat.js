@@ -18,6 +18,9 @@ App.chat = App.cable.subscriptions.create('ChatChannel', {
 			newChatDisplay('incoming', data.message, data.time)
 			// defined in app/assets/javascripts/main.js
 
+			this.perform('mark_read', {id: data.key})
+			// send a read message back to server
+
 			} else {
 
 			notificationBuilder(data.title, data.message, data.link, data.key)

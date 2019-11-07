@@ -48,9 +48,9 @@ let notificationBuilder = function (title, message, link, key) {
     })
 }
 
-let newChatDisplay = function (direction, message, time) {
+let newChatDisplay = function (direction, message, time, messageId) {
  // created this to facilitate easier adding of zero-refresh message sending later
-
+ // called from app/assets/javascripts/channels/chat.js and the chats_controller.rb
     let node;
 
     if (direction === 'incoming') {

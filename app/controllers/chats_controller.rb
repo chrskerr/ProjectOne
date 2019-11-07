@@ -6,8 +6,15 @@ class ChatsController < ApplicationController
 
   def show
     @from = User.find params[:id]
-    @messages = Chat.where(from_user: [@current_user, params[:id]], to_user: [@current_user, params[:id]]).order(:created_at)
+    @messages = Chat.where(from_user: [@current_user.id, params[:id]], to_user: [@current_user.id, params[:id]]).order(:created_at)
     @message = Chat.new
+    
+    my_messages = Chat.where(from_user: params[:id], to_user: @current_user.id, seen: false)
+
+    my_messages.each do | msg |
+      msg.seen = true
+      msg.save
+    end 
   end
 
   def new
