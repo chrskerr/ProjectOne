@@ -6,12 +6,12 @@
             <% User.all.order(:name).each do | u | %>
                 <% unless u.id == @current_user.id %>
                     <% if u.id == params[:id].to_i %>
-                    <%= link_to "#{u.name}", chat_path(u), :class => "mb-2 btn btn-secondary" %>
+                    <%= link_to "#{u.name}", chat_path(u), :class => "mb-2 btn btn-primary" %>
                     <% else %>
                         <% if Chat.where(to_user: @current_user.id, from_user:u.id).count > 0 && Chat.where(to_user: @current_user.id, from_user:u.id, seen: false).exists? %>
                             <%= link_to "#{u.name}", chat_path(u), :class => "mb-2 btn btn-outline-danger" %>
                         <% else %>
-                            <%= link_to "#{u.name}", chat_path(u), :class => "mb-2 btn btn-outline-secondary" %>
+                            <%= link_to "#{u.name}", chat_path(u), :class => "mb-2 btn btn-outline-primary" %>
                         <% end %>                    
                     <% end %>
                 <% end %>
