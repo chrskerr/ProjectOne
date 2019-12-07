@@ -1,7 +1,7 @@
 User.destroy_all
 u1 = User.create :name => 'Chris', :email => 'chris@example.com', :password => 'example', :password_confirmation => 'example', :admin => true
 u2 = User.create :name => 'Example', :email => 'example@example.com', :password => 'example', :password_confirmation => 'example'
-u3 = User.create :name => 'Kate', :email => 'Kate@example.com', :password => 'example', :password_confirmation => 'example'
+u3 = User.create :name => 'Kate', :email => 'kate@example.com', :password => 'example', :password_confirmation => 'example'
 puts "#{ User.count } users created"
 
 Folder.destroy_all
