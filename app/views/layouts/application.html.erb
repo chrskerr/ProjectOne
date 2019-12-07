@@ -16,14 +16,14 @@
     </div>
 
     <div class='vh-100 d-flex flex-column'>
-      <nav class='p-3 navbar navbar-expand-lg navbar-light d-flex justify-content-between bg-primary'>
+      <nav class='p-3 navbar navbar-expand-lg navbar-light d-flex justify-content-between bg-light'>
         <div>
-          <%= link_to 'Home', root_path, :class => 'nav-item mr-1 btn btn-outline-light' %>
+          <%= link_to 'Home', root_path, :class => 'nav-item mr-1 btn btn-outline-dark' %>
           
-          <%= link_to 'File Sharing', uploads_path, :class => 'nav-item mr-1 btn btn-outline-light' %>
+          <%= link_to 'File Sharing', uploads_path, :class => 'nav-item mr-1 btn btn-outline-dark' %>
           
           <span style='position: relative;'>
-            <%= link_to 'Messages', chats_path, :class => 'nav-item mr-1 btn btn-outline-light' %>
+            <%= link_to 'Messages', chats_path, :class => 'nav-item mr-1 btn btn-outline-dark' %>
             <% unless @current_user.nil? %> 
               <% if Chat.where(to_user: @current_user.id, seen: false).exists? %>
                 <span class='unread-notification'></span>
@@ -33,16 +33,16 @@
         </div>
         <div>
           <% if @current_user.nil? %>
-            <%= link_to 'Log in', login_path, :class => 'nav-item mr-1 btn btn-outline-light' %>
-            <%= link_to 'New Account', new_user_path, :class => 'nav-item mr-1 btn btn-outline-light' %>
+            <%= link_to 'Log in', login_path, :class => 'nav-item mr-1 btn btn-outline-dark' %>
+            <%= link_to 'New Account', new_user_path, :class => 'nav-item mr-1 btn btn-outline-dark' %>
           <% else %>
-            <%= link_to 'Log out', root_path, :method => 'delete', :class => 'nav-item mr-1 btn btn-outline-light' %>
+            <%= link_to 'Log out', root_path, :method => 'delete', :class => 'nav-item mr-1 btn btn-outline-dark' %>
           <% end %>
         </div>
       </nav>
-      <nav class='px-3 navbar navbar-expand-lg navbar-primary d-flex flex-row-reverse bg-primary'>
+      <nav class='px-3 navbar navbar-expand-lg navbar-primary d-flex flex-row-reverse bg-light'>
         <% if @current_user.present? %>
-            <h4 class='mr-3 text-white'>Hello <%= @current_user.name %></h4>
+            <h4 class='mr-3 text-dark'>Hello <%= @current_user.name %></h4>
             <p id='session-id' style='display: none;'><%= @current_user.id %></p>
         <% end %>
       </nav>
